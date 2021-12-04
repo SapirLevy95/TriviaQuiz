@@ -2,11 +2,11 @@
     "name": "server",
     "version": "1.0.0",
     "description": "Node.js setup with Express and TypeScript",
-    "main": "dist/index.js",
+    "main": "dist/app.js",
     "scripts": {
         "build": "rimraf dist && tsc",
         "prestart": "npm run build",
-        "start": "nodemon dist/index.js",
+        "start": "nodemon dist/app.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "license": "MIT",

@@ -7,12 +7,9 @@ export const QuizAnswers: React.FC<{
     onChangeQuestion: (answer: String) => void;
 }> = ({ question, onChangeQuestion }) => {
     const onChangeQuestionHendler = async (answer: String) => {
-        const response = await fetch(`http://localhost:5000/questions`);
-        const questions = await response.json();
-        console.log('questions', questions);
-
         onChangeQuestion(answer);
     };
+
     return (
         <div>
             <Stack spacing={10} direction="row" style={{ marginTop: 50 }}>
@@ -30,7 +27,7 @@ export const QuizAnswers: React.FC<{
                         onChangeQuestionHendler(question?.answers.answer2)
                     }
                 >
-                    {question?.answers.answer2}{' '}
+                    {question?.answers.answer2}
                 </Button>
             </Stack>
             <Stack spacing={10} direction="row" style={{ marginTop: 20 }}>
