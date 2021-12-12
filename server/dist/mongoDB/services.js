@@ -36,29 +36,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchQuestions = void 0;
-var services_1 = require("../mongoDB/services");
-var fetchQuestions = function (req, res) {
-    var dbConnection = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var db, collection, questions, questions1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, services_1.activateConnection)()];
-                case 1:
-                    db = _a.sent();
-                    collection = db === null || db === void 0 ? void 0 : db.collection('Questions');
-                    return [4 /*yield*/, (collection === null || collection === void 0 ? void 0 : collection.find({}).toArray())];
-                case 2:
-                    questions = _a.sent();
-                    return [4 /*yield*/, (collection === null || collection === void 0 ? void 0 : collection.find({}, { projection: { _id: 1, category: 0, type: 0 } }))];
-                case 3:
-                    questions1 = _a.sent();
-                    console.log('questions');
-                    res.status(200).json(questions1);
-                    return [2 /*return*/];
-            }
-        });
-    }); };
-    dbConnection();
-};
-exports.fetchQuestions = fetchQuestions;
+exports.activateConnection = void 0;
+var mongodb_1 = require("mongodb");
+var url = 'mongodb://localhost:27017';
+var client = new mongodb_1.MongoClient(url);
+var dbName = 'TriviaQuiz';
+var connection = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var db;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, client.connect()];
+            case 1:
+                _a.sent();
+                console.log('connected successfully to mongodb server');
+                db = client.db(dbName);
+                return [2 /*return*/, db];
+        }
+    });
+}); };
+var activateConnection = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var db, _a;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, 3, 4]);
+                return [4 /*yield*/, connection()];
+            case 1:
+                db = _b.sent();
+                return [2 /*return*/, db];
+            case 2:
+                _a = _b.sent();
+                console.error;
+                return [3 /*break*/, 4];
+            case 3:
+                (function () { return client.close(); });
+                return [7 /*endfinally*/];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+exports.activateConnection = activateConnection;

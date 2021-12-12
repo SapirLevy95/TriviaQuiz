@@ -27,7 +27,7 @@ export const Quiz: React.FC<{
     const onChangeQuestion = (answer: String) => {
         let participantWithNewScore = { ...participant };
         let newQuestionIndex = questionIndex + 1;
-        answer === question?.rightAnswer && ++participantWithNewScore.score;
+        answer === question?.correctAnswer && ++participantWithNewScore.score;
         if (questionIndex === questions.length) {
             setIsFinishedQuiz(true);
             setQuestionIndex(1);

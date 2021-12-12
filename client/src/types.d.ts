@@ -4,10 +4,17 @@ interface Participant {
 }
 
 interface Question {
+    difficulty: String;
     question: String;
-    answers: Answers;
-    rightAnswer: String;
+    correctAnswer: String;
+    incorrectAnswers: String[];
+    // correct_answer: String;
+    // incorrect_answers: String[];
 }
+
+// interface Answer {
+//     answer: String;
+// }
 
 interface Answers {
     answer1: String;
